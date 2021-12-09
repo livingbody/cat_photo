@@ -1,0 +1,69 @@
+Model: HumanSegMobile
+_Attributes:
+  eval_metric: {}
+  labels: []
+  num_classes: 2
+_ModelInputsOutputs:
+  test_inputs:
+  - - image
+    - image
+  test_outputs:
+  - - pred
+    - unsqueeze2_0.tmp_0
+  - - logit
+    - softmax_0.tmp_0
+_init_params:
+  class_weight: null
+  ignore_index: 255
+  num_classes: 2
+  stage1_num_blocks:
+  - 1
+  stage1_num_channels:
+  - 32
+  stage1_num_modules: 1
+  stage2_num_blocks:
+  - 2
+  - 2
+  stage2_num_channels:
+  - 16
+  - 32
+  stage2_num_modules: 1
+  stage3_num_blocks:
+  - 2
+  - 2
+  - 2
+  stage3_num_channels:
+  - 16
+  - 32
+  - 64
+  stage3_num_modules: 1
+  stage4_num_blocks:
+  - 2
+  - 2
+  - 2
+  - 2
+  stage4_num_channels:
+  - 16
+  - 32
+  - 64
+  - 128
+  stage4_num_modules: 1
+  sync_bn: true
+  use_bce_loss: false
+  use_dice_loss: false
+status: Infer
+test_transforms:
+- Resize:
+    interp: LINEAR
+    target_size:
+    - 192
+    - 192
+- Normalize:
+    mean:
+    - 0.5
+    - 0.5
+    - 0.5
+    std:
+    - 0.5
+    - 0.5
+    - 0.5
