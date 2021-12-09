@@ -25,9 +25,9 @@ import paddlehub as hub
 from paddle.fluid.core import PaddleTensor, AnalysisConfig, create_paddle_predictor
 from paddlehub.module.module import moduleinfo, runnable, serving
 
-from humanseg_mobile.processor import postprocess, base64_to_cv2, cv2_to_base64, check_dir
-from humanseg_mobile.data_feed import reader, preprocess_v
-from humanseg_mobile.optimal import postprocess_v, threshold_mask
+from catseg_mobile.processor import postprocess, base64_to_cv2, cv2_to_base64, check_dir
+from catseg_mobile.data_feed import reader, preprocess_v
+from catseg_mobile.optimal import postprocess_v, threshold_mask
 
 
 @moduleinfo(
@@ -79,7 +79,7 @@ class HRNetw18samllv1humanseg(hub.Module):
                 batch_size=1,
                 use_gpu=False,
                 visualization=False,
-                output_dir='humanseg_mobile_output'):
+                output_dir='catseg_mobile_output'):
         """
         API for human segmentation.
 
@@ -197,7 +197,7 @@ class HRNetw18samllv1humanseg(hub.Module):
     def video_segment(self,
                       video_path=None,
                       use_gpu=False,
-                      save_dir='humanseg_mobile_video_result'):
+                      save_dir='catseg_mobile_video_result'):
         """
         API for human video segmentation.
 
@@ -314,7 +314,7 @@ class HRNetw18samllv1humanseg(hub.Module):
             cap_video.release()
 
     def save_inference_model(self,
-                             dirname='humanseg_mobile_model',
+                             dirname='catseg_mobile_model',
                              model_filename=None,
                              params_filename=None,
                              combined=True):
@@ -392,12 +392,12 @@ class HRNetw18samllv1humanseg(hub.Module):
         self.arg_config_group.add_argument(
             '--output_dir',
             type=str,
-            default='humanseg_mobile_output',
+            default='catseg_mobile_output',
             help="The directory to save output images.")
         self.arg_config_group.add_argument(
             '--save_dir',
             type=str,
-            default='humanseg_mobile_model',
+            default='catseg_mobile_model',
             help="The directory to save model.")
         self.arg_config_group.add_argument(
             '--visualization',
